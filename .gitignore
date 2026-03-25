@@ -31,4 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+## spring boot ignore
 /src/main/resources/application.properties
