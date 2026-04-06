@@ -1,6 +1,8 @@
 package com.anthony.products.gestao.comercio.produto.model;
 
 import com.anthony.products.gestao.comercio.cartegoria.model.CartegoriaModel;
+import com.anthony.products.gestao.comercio.varianteProduto.model.VarianteProdutoModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -19,6 +21,9 @@ public class ProdutoModel {
     @Column(name = "preco_produto", nullable = false)
     private Double preco;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
+    private List<VarianteProdutoModel> varianteProduto;
     @ManyToMany
     @JoinTable(name = "tbl_cartegoria_produto",
             joinColumns = @JoinColumn(name = "id_produto"),
@@ -84,4 +89,12 @@ public class ProdutoModel {
     public void setCartegoria(List<CartegoriaModel> cartegorias) {
         this.cartegoria = cartegorias;
     }
+    public List<VarianteProdutoModel> getVarianteProduto() {
+        return varianteProduto;
+    }
+
+    public void setVarianteProduto(List<VarianteProdutoModel> varianteProduto) {
+        this.varianteProduto = varianteProduto;
+    }
+
 }
